@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 /**
@@ -12,6 +13,18 @@ function checkIsValidUserInput(userInput) {
   const setUserInput = new Set(userInput);
 
   if (isNaN(userInput) || userInput[0] === '0' || setUserInput.size !== 4) {
+    if (isNaN(userInput)) {
+      console.error('User input is not a number');
+    }
+
+    if (userInput[0] === '0') {
+      console.error('User input cannot start with 0');
+    }
+
+    if (setUserInput.size !== 4) {
+      console.error('User input must contain 4 unique digits');
+    }
+
     return false;
   }
 

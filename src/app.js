@@ -13,10 +13,16 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-rl.question('Guess a 4-digit number: ', (userInput) => {
-  if (checkIsValidUserInput(userInput)) {
-    getBullsAndCows(Number(userInput), randomNumber);
-  }
+const askUser = function runGame() {
+  rl.question('Guess a 4-digit number: ', (userInput) => {
+    if (checkIsValidUserInput(userInput)) {
+      rl.close();
 
-  rl.close();
-});
+      return getBullsAndCows(Number(userInput), randomNumber);
+    }
+
+    runGame();
+  });
+};
+
+askUser();
